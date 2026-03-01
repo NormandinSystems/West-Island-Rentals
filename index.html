@@ -523,7 +523,7 @@
         </div>
     </section>
 
-    <!-- Contact Section / Netlify Form -->
+   <!-- Contact Section / Netlify Form -->
     <section id="contact" class="py-24 bg-brand-50 dark:bg-brand-black transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -582,6 +582,60 @@
                         <div>
                             <label for="email" class="block text-sm font-medium text-brand-900 dark:text-gray-300 mb-1"><span class="lang-en">Email Address</span><span class="lang-fr">Courriel</span></label>
                             <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#222] text-brand-900 dark:text-white rounded outline-none focus:border-brand-gold transition-colors">
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label for="property" class="block text-sm font-medium text-brand-900 dark:text-gray-300 mb-1"><span class="lang-en">Property of Interest</span><span class="lang-fr">Propriété souhaitée</span></label>
+                                <select id="property" name="property" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#222] text-brand-900 dark:text-white rounded outline-none focus:border-brand-gold transition-colors">
+                                    <option value="any">Any Available / N'importe laquelle</option>
+                                    <option value="5015">5015 Rue Raymond (Upper)</option>
+                                    <option value="5015a">5015A Rue Raymond (Lower)</option>
+                                    <option value="4535">4535 Rue de Namur</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="date" class="block text-sm font-medium text-brand-900 dark:text-gray-300 mb-1"><span class="lang-en">Estimated Move-in</span><span class="lang-fr">Date d'emménagement</span></label>
+                                <input type="date" id="date" name="move-in-date" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#222] text-brand-900 dark:text-white rounded outline-none focus:border-brand-gold transition-colors">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label for="duration" class="block text-sm font-medium text-brand-900 dark:text-gray-300 mb-1"><span class="lang-en">Expected Duration</span><span class="lang-fr">Durée prévue</span></label>
+                                <select id="duration" name="duration" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#222] text-brand-900 dark:text-white rounded outline-none focus:border-brand-gold transition-colors">
+                                    <option value="1-2 months">1 - 2 Months / Mois</option>
+                                    <option value="3-5 months">3 - 5 Months / Mois</option>
+                                    <option value="6+ months">6+ Months / Mois</option>
+                                    <option value="unsure">Unsure / Incertain</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="reason" class="block text-sm font-medium text-brand-900 dark:text-gray-300 mb-1"><span class="lang-en">Reason for Stay</span><span class="lang-fr">Raison du séjour</span></label>
+                                <select id="reason" name="reason" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#222] text-brand-900 dark:text-white rounded outline-none focus:border-brand-gold transition-colors">
+                                    <option value="insurance">Insurance Claim / Réclamation d'assurance</option>
+                                    <option value="renovation">Home Renovation / Rénovations</option>
+                                    <option value="relocation">Work Relocation / Mutation</option>
+                                    <option value="transition">Personal Transition / Transition personnelle</option>
+                                    <option value="other">Other / Autre</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label for="occupants" class="block text-sm font-medium text-brand-900 dark:text-gray-300 mb-1"><span class="lang-en">Total Occupants</span><span class="lang-fr">Nombre d'occupants</span></label>
+                                <input type="number" id="occupants" name="occupants" min="1" placeholder="e.g. 2" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#222] text-brand-900 dark:text-white rounded outline-none focus:border-brand-gold transition-colors">
+                            </div>
+                            <div>
+                                <label for="pets" class="block text-sm font-medium text-brand-900 dark:text-gray-300 mb-1"><span class="lang-en">Pets</span><span class="lang-fr">Animaux</span></label>
+                                <select id="pets" name="pets" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#222] text-brand-900 dark:text-white rounded outline-none focus:border-brand-gold transition-colors">
+                                    <option value="none">No Pets / Aucun animal</option>
+                                    <option value="dog">Yes - Dog(s) / Oui - Chien(s)</option>
+                                    <option value="cat">Yes - Cat(s) / Oui - Chat(s)</option>
+                                    <option value="other">Yes - Other / Oui - Autre</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div>
