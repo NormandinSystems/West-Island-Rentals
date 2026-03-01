@@ -3,13 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>West Island Rentals | Premium Mid-Term Housing in Montreal</title>
-    <meta name="description" content="Fully furnished, premium short-to-medium term rentals in Montreal's West Island. Equipped with Starlink, perfect for relocations, transitions, and temporary stays.">
     
+    <!-- SEO & Geo Tags -->
+    <title>West Island Rentals | Premium Mid-Term Housing in Montreal</title>
+    <meta name="description" content="Green-certified, fully furnished premium mid-term rentals in Montreal's West Island and surrounding areas. Equipped with Starlink, EV chargers, and backup generators.">
+    <meta name="keywords" content="Montreal rentals, West Island housing, short term rentals Montreal, furnished apartments Pierrefonds, corporate housing, relocation Montreal, mid-term rentals">
+    <meta name="author" content="West Island Rentals">
+    <meta name="geo.region" content="CA-QC">
+    <meta name="geo.placename" content="Montreal, West Island">
+    
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="West Island Rentals | Premium Mid-Term Housing">
+    <meta property="og:description" content="Fully furnished, all-inclusive luxury temporary housing in Montreal's West Island.">
+    <meta property="og:image" content="logo.png">
+    <meta property="og:type" content="website">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class', // Enables dark mode toggling
             theme: {
                 extend: {
                     colors: {
@@ -19,6 +32,8 @@
                             500: '#64748b',
                             800: '#1e293b',
                             900: '#0f172a', // Deep Navy
+                            black: '#0a0a0a', // True Black for Dark Mode
+                            blackCard: '#141414',
                             gold: '#b48e4b', // Champagne Gold
                             goldHover: '#9a783d'
                         }
@@ -41,6 +56,10 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
+        /* Bilingual Display Logic */
+        body.lang-fr .lang-en { display: none !important; }
+        body.lang-en .lang-fr { display: none !important; }
+
         /* Smooth Fade-In Animations */
         .reveal {
             opacity: 0;
@@ -54,17 +73,38 @@
         
         /* Hero Gradient Overlay */
         .hero-gradient {
-            background: linear-gradient(90deg, rgba(15,23,42,0.95) 0%, rgba(15,23,42,0.7) 50%, rgba(15,23,42,0.3) 100%);
+            background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(15,23,42,0.7) 50%, rgba(0,0,0,0.4) 100%);
         }
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; }
+        .dark ::-webkit-scrollbar-track { background: #0a0a0a; }
         ::-webkit-scrollbar-thumb { background: #b48e4b; border-radius: 5px; }
         ::-webkit-scrollbar-thumb:hover { background: #9a783d; }
     </style>
+
+    <!-- Schema.org Local Business Script -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "RealEstateAgent",
+      "name": "West Island Rentals",
+      "image": "logo.png",
+      "email": "info@westislandrentals.com",
+      "telephone": "+15149416061",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Montreal",
+        "addressRegion": "QC",
+        "addressCountry": "CA"
+      },
+      "description": "Premium, fully furnished mid-term rentals in Montreal's West Island and surrounding areas.",
+      "priceRange": "$$$"
+    }
+    </script>
 </head>
-<body class="font-sans text-brand-800 bg-brand-50 antialiased selection:bg-brand-gold selection:text-white">
+<body class="lang-en font-sans text-brand-800 bg-brand-50 dark:bg-brand-black dark:text-gray-200 antialiased selection:bg-brand-gold selection:text-white transition-colors duration-300">
 
     <!-- Navigation -->
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-4">
@@ -77,14 +117,41 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#about" class="text-sm font-medium text-white hover:text-brand-gold transition-colors nav-link">Our Approach</a>
-                    <a href="#properties" class="text-sm font-medium text-white hover:text-brand-gold transition-colors nav-link">Properties</a>
-                    <a href="#amenities" class="text-sm font-medium text-white hover:text-brand-gold transition-colors nav-link">Amenities</a>
-                    <a href="#contact" class="px-6 py-2.5 bg-brand-gold text-white text-sm font-semibold rounded shadow-md hover:bg-brand-goldHover transition-all transform hover:-translate-y-0.5">Inquire Now</a>
+                    <a href="#about" class="text-sm font-medium text-white hover:text-brand-gold transition-colors nav-link">
+                        <span class="lang-en">Our Approach</span><span class="lang-fr">Notre Approche</span>
+                    </a>
+                    <a href="#properties" class="text-sm font-medium text-white hover:text-brand-gold transition-colors nav-link">
+                        <span class="lang-en">Properties</span><span class="lang-fr">Propriétés</span>
+                    </a>
+                    <a href="#amenities" class="text-sm font-medium text-white hover:text-brand-gold transition-colors nav-link">
+                        <span class="lang-en">Amenities</span><span class="lang-fr">Commodités</span>
+                    </a>
+                    
+                    <!-- Utility Toggles -->
+                    <div class="flex items-center gap-4 border-l border-gray-500/30 pl-6">
+                        <button id="lang-toggle" class="text-sm font-bold text-white hover:text-brand-gold transition-colors nav-link flex items-center gap-1">
+                            <i data-lucide="globe" class="w-4 h-4"></i> <span id="lang-text">FR</span>
+                        </button>
+                        <button id="theme-toggle" class="text-white hover:text-brand-gold transition-colors nav-link">
+                            <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+                            <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                        </button>
+                    </div>
+
+                    <a href="#contact" class="px-6 py-2.5 bg-brand-gold text-white text-sm font-semibold rounded shadow-md hover:bg-brand-goldHover transition-all transform hover:-translate-y-0.5">
+                        <span class="lang-en">Inquire Now</span><span class="lang-fr">Demande d'info</span>
+                    </a>
                 </div>
 
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
+                <!-- Mobile Menu Button & Utils -->
+                <div class="md:hidden flex items-center gap-4">
+                    <button id="mobile-theme-toggle" class="text-white hover:text-brand-gold transition-colors nav-link">
+                        <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+                        <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                    </button>
+                    <button id="mobile-lang-toggle" class="text-sm font-bold text-white hover:text-brand-gold transition-colors nav-link">
+                        <span id="mobile-lang-text">FR</span>
+                    </button>
                     <button id="mobile-menu-btn" class="text-white hover:text-brand-gold focus:outline-none nav-link">
                         <i data-lucide="menu" class="w-7 h-7"></i>
                     </button>
@@ -93,12 +160,20 @@
         </div>
 
         <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl absolute w-full left-0 top-full transition-all">
-            <div class="px-4 pt-2 pb-6 space-y-2 border-t border-gray-100">
-                <a href="#about" class="block px-3 py-3 text-base font-medium text-brand-900 hover:bg-brand-50 rounded">Our Approach</a>
-                <a href="#properties" class="block px-3 py-3 text-base font-medium text-brand-900 hover:bg-brand-50 rounded">Properties</a>
-                <a href="#amenities" class="block px-3 py-3 text-base font-medium text-brand-900 hover:bg-brand-50 rounded">Amenities</a>
-                <a href="#contact" class="block px-3 py-3 mt-4 text-center text-base font-medium bg-brand-900 text-white rounded shadow">Inquire Now</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-brand-black shadow-xl absolute w-full left-0 top-full transition-all border-t dark:border-brand-800 border-gray-100">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#about" class="block px-3 py-3 text-base font-medium text-brand-900 dark:text-white hover:bg-brand-50 dark:hover:bg-brand-800 rounded mobile-link">
+                    <span class="lang-en">Our Approach</span><span class="lang-fr">Notre Approche</span>
+                </a>
+                <a href="#properties" class="block px-3 py-3 text-base font-medium text-brand-900 dark:text-white hover:bg-brand-50 dark:hover:bg-brand-800 rounded mobile-link">
+                    <span class="lang-en">Properties</span><span class="lang-fr">Propriétés</span>
+                </a>
+                <a href="#amenities" class="block px-3 py-3 text-base font-medium text-brand-900 dark:text-white hover:bg-brand-50 dark:hover:bg-brand-800 rounded mobile-link">
+                    <span class="lang-en">Amenities</span><span class="lang-fr">Commodités</span>
+                </a>
+                <a href="#contact" class="block px-3 py-3 mt-4 text-center text-base font-medium bg-brand-gold text-white rounded shadow mobile-link">
+                    <span class="lang-en">Inquire Now</span><span class="lang-fr">Demande d'info</span>
+                </a>
             </div>
         </div>
     </nav>
@@ -115,20 +190,23 @@
             <div class="max-w-2xl reveal">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm text-brand-gold text-sm font-medium mb-6">
                     <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
-                    Now accepting inquiries for Spring 2026
+                    <span class="lang-en">Serving Montreal's West Island & Surrounding Area</span>
+                    <span class="lang-fr">Desservant l'Ouest de l'Île de Montréal et ses environs</span>
                 </div>
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-tight mb-6">
-                    Temporary Housing with <span class="text-brand-gold italic">Permanent Comfort.</span>
+                    <span class="lang-en">Temporary Housing with <span class="text-brand-gold italic">Permanent Comfort.</span></span>
+                    <span class="lang-fr">Logement temporaire avec un <span class="text-brand-gold italic">confort permanent.</span></span>
                 </h1>
                 <p class="text-lg md:text-xl text-gray-300 mb-8 font-light leading-relaxed">
-                    Premium, fully-furnished homes in Montreal's West Island. Built specifically for life's transitions—whether you're renovating, relocating, or simply need a turnkey sanctuary.
+                    <span class="lang-en">Premium, fully-furnished, Green-Certified homes. Built specifically for life's transitions—whether you're renovating, relocating, or simply need a turnkey sanctuary.</span>
+                    <span class="lang-fr">Des maisons haut de gamme, entièrement meublées et certifiées écologiques. Conçues spécifiquement pour les transitions de la vie.</span>
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
                     <a href="#properties" class="px-8 py-4 bg-brand-gold text-white font-semibold rounded text-center hover:bg-brand-goldHover transition-all shadow-lg hover:shadow-brand-gold/30">
-                        View Properties
+                        <span class="lang-en">View Properties</span><span class="lang-fr">Voir les propriétés</span>
                     </a>
                     <a href="#contact" class="px-8 py-4 bg-white/10 text-white font-semibold rounded text-center hover:bg-white/20 backdrop-blur-md border border-white/20 transition-all">
-                        Contact Us
+                        <span class="lang-en">Contact Us</span><span class="lang-fr">Contactez-nous</span>
                     </a>
                 </div>
             </div>
@@ -136,51 +214,61 @@
     </section>
 
     <!-- Trust Banner -->
-    <div class="bg-brand-900 border-y border-brand-800 py-6 relative z-20">
+    <div class="bg-brand-900 dark:bg-[#050505] border-y border-brand-800 py-6 relative z-20 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-brand-800">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-brand-800 dark:divide-gray-800">
                 <div class="flex flex-col items-center justify-center p-2 reveal">
                     <i data-lucide="wifi" class="text-brand-gold w-6 h-6 mb-2"></i>
-                    <span class="text-white text-sm font-medium">Starlink Equipped</span>
+                    <span class="text-white text-sm font-medium"><span class="lang-en">Starlink Equipped</span><span class="lang-fr">Équipé de Starlink</span></span>
                 </div>
                 <div class="flex flex-col items-center justify-center p-2 reveal" style="transition-delay: 100ms;">
                     <i data-lucide="sofa" class="text-brand-gold w-6 h-6 mb-2"></i>
-                    <span class="text-white text-sm font-medium">Fully Furnished</span>
+                    <span class="text-white text-sm font-medium"><span class="lang-en">Fully Furnished</span><span class="lang-fr">Entièrement meublé</span></span>
                 </div>
                 <div class="flex flex-col items-center justify-center p-2 reveal" style="transition-delay: 200ms;">
-                    <i data-lucide="calendar-clock" class="text-brand-gold w-6 h-6 mb-2"></i>
-                    <span class="text-white text-sm font-medium">Flexible Terms</span>
+                    <i data-lucide="leaf" class="text-brand-gold w-6 h-6 mb-2"></i>
+                    <span class="text-white text-sm font-medium"><span class="lang-en">Green Certified</span><span class="lang-fr">Certifié écologique</span></span>
                 </div>
                 <div class="flex flex-col items-center justify-center p-2 reveal" style="transition-delay: 300ms;">
                     <i data-lucide="shield-check" class="text-brand-gold w-6 h-6 mb-2"></i>
-                    <span class="text-white text-sm font-medium">Move-In Ready</span>
+                    <span class="text-white text-sm font-medium"><span class="lang-en">Move-In Ready</span><span class="lang-fr">Prêt à emménager</span></span>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- About / The Approach -->
-    <section id="about" class="py-24 bg-white">
+    <section id="about" class="py-24 bg-white dark:bg-brand-black transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="reveal">
-                    <h2 class="text-brand-gold text-sm font-bold tracking-widest uppercase mb-3">Our Approach</h2>
-                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-brand-900 mb-6 leading-tight">
-                        We understand that life doesn't always go according to plan.
+                    <h2 class="text-brand-gold text-sm font-bold tracking-widest uppercase mb-3">
+                        <span class="lang-en">Our Approach</span><span class="lang-fr">Notre Approche</span>
+                    </h2>
+                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-brand-900 dark:text-white mb-6 leading-tight">
+                        <span class="lang-en">We understand that life doesn't always go according to plan.</span>
+                        <span class="lang-fr">Nous comprenons que la vie ne se déroule pas toujours comme prévu.</span>
                     </h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        At West Island Rentals, we specialize in providing more than just a place to sleep. We provide stability during life's transitions. Whether your primary home is undergoing major renovations, you've experienced an insurance displacement, or you're navigating a personal transition like a separation, we are here to provide a seamless landing pad.
+                    <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                        <span class="lang-en">At West Island Rentals, we specialize in providing more than just a place to sleep. We provide stability during life's transitions. Whether your primary home is undergoing major renovations, you've experienced an insurance displacement, or you're navigating a personal transition, we are here to provide a seamless landing pad across Montreal's West Island and surrounding areas.</span>
+                        <span class="lang-fr">Chez West Island Rentals, nous offrons une stabilité lors des transitions de la vie. Que ce soit pour des rénovations, un sinistre ou une transition personnelle, nous offrons un point de chute idéal dans l'Ouest de l'Île de Montréal.</span>
                     </p>
-                    <p class="text-gray-600 mb-8 leading-relaxed">
-                        Every property is meticulously curated, entirely fully furnished, complete with all major appliances, and equipped with the fastest internet available (Starlink). All utilities (including hydro and electricity), as well as professional snow removal and landscaping, are completely included in your rate. Just bring your suitcase; we've taken care of the rest.
+                    <p class="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
+                        <span class="lang-en">Every property is <strong>Green Certified</strong>, meticulously curated, entirely fully furnished, complete with all major appliances, and equipped with Starlink. All utilities (including electricity), as well as professional snow removal and landscaping, are completely included in your rate. Just bring your suitcase.</span>
+                        <span class="lang-fr">Chaque propriété est certifiée écologique, entièrement meublée, avec électroménagers et Starlink. Tous les services (incluant l'électricité), ainsi que le déneigement et l'entretien paysager, sont inclus.</span>
                     </p>
-                    <div class="flex items-center gap-4 p-4 bg-brand-50 rounded-lg border border-brand-100">
-                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm shrink-0">
+                    <div class="flex items-center gap-4 p-4 bg-brand-50 dark:bg-brand-blackCard rounded-lg border border-brand-100 dark:border-gray-800">
+                        <div class="w-12 h-12 bg-white dark:bg-[#222] rounded-full flex items-center justify-center shadow-sm shrink-0">
                             <i data-lucide="heart-handshake" class="text-brand-gold w-6 h-6"></i>
                         </div>
                         <div>
-                            <h4 class="font-semibold text-brand-900">Empathetic Service</h4>
-                            <p class="text-sm text-gray-500">Discreet, professional, and entirely tailored to your temporary housing needs.</p>
+                            <h4 class="font-semibold text-brand-900 dark:text-white">
+                                <span class="lang-en">Empathetic Service</span><span class="lang-fr">Service Empathique</span>
+                            </h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">
+                                <span class="lang-en">Discreet, professional, and tailored to your temporary housing needs.</span>
+                                <span class="lang-fr">Discret, professionnel et adapté à vos besoins de logement temporaire.</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -193,92 +281,164 @@
     </section>
 
     <!-- Properties Showcase -->
-    <section id="properties" class="py-24 bg-brand-50">
+    <section id="properties" class="py-24 bg-brand-50 dark:bg-[#050505] transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-                <h2 class="text-brand-gold text-sm font-bold tracking-widest uppercase mb-3">Our Portfolio</h2>
-                <h3 class="text-3xl md:text-4xl font-serif font-bold text-brand-900 mb-4">Select Your Sanctuary</h3>
-                <p class="text-gray-600">Explore our growing collection of beautifully restored and fully furnished homes situated in the quiet, upscale neighborhoods of Montreal's West Island.</p>
+                <h2 class="text-brand-gold text-sm font-bold tracking-widest uppercase mb-3">
+                    <span class="lang-en">Our Portfolio</span><span class="lang-fr">Notre Portefeuille</span>
+                </h2>
+                <h3 class="text-3xl md:text-4xl font-serif font-bold text-brand-900 dark:text-white mb-4">
+                    <span class="lang-en">Select Your Sanctuary</span><span class="lang-fr">Choisissez votre sanctuaire</span>
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400">
+                    <span class="lang-en">Explore our collection of fully furnished homes situated in quiet, upscale neighborhoods.</span>
+                    <span class="lang-fr">Explorez notre collection de maisons entièrement meublées situées dans des quartiers calmes et haut de gamme.</span>
+                </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
                 <!-- Property 1 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 group hover:-translate-y-2 transition-transform duration-300 reveal">
+                <div class="bg-white dark:bg-brand-blackCard rounded-xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800 group hover:-translate-y-2 transition-transform duration-300 reveal">
                     <div class="relative h-64 overflow-hidden">
-                        <div class="absolute top-4 right-4 bg-brand-900 text-white text-xs font-bold px-3 py-1 rounded shadow z-10">Available Soon</div>
+                        <div class="absolute top-4 right-4 bg-brand-900 dark:bg-brand-gold text-white text-xs font-bold px-3 py-1 rounded shadow z-10 uppercase tracking-wide">
+                            <span class="lang-en">Available Soon</span><span class="lang-fr">Bientôt disponible</span>
+                        </div>
                         <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="5015 Rue Raymond Upper" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-xl font-serif font-bold text-brand-900">5015 Rue Raymond (Upper)</h4>
+                            <h4 class="text-xl font-serif font-bold text-brand-900 dark:text-white">5015 Rue Raymond (Upper)</h4>
                         </div>
-                        <p class="text-sm text-gray-500 mb-4 flex items-center gap-1">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 flex items-center gap-1">
                             <i data-lucide="map-pin" class="w-4 h-4"></i> Pierrefonds, QC H8Z 2X1
                         </p>
-                        <p class="text-gray-600 text-sm mb-6 line-clamp-3">A spacious 5 ½ upper-level suite. Enjoy your own private, fully fenced backyard complete with a BBQ and outdoor patio furniture. <br><span class="italic text-xs mt-1 block">*Pets: To be determined.</span></p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-6 line-clamp-2">
+                            <span class="lang-en">A spacious 1,250 sq.ft 5 ½ upper-level suite. Enjoy your own private, fully fenced backyard.</span>
+                            <span class="lang-fr">Un spacieux 5 ½ de 1 250 pi.ca. Profitez de votre propre cour arrière privée et entièrement clôturée.</span>
+                        </p>
                         
-                        <div class="grid grid-cols-2 gap-3 text-sm text-brand-900 font-medium border-t border-gray-100 pt-4 mb-6">
+                        <div class="grid grid-cols-2 gap-y-3 gap-x-1 text-sm text-brand-900 dark:text-gray-200 font-medium border-t border-gray-100 dark:border-gray-800 pt-4 mb-6">
+                            <span class="flex items-center gap-1"><i data-lucide="maximize" class="w-4 h-4 text-brand-gold"></i> 1250 sq.ft</span>
                             <span class="flex items-center gap-1"><i data-lucide="bed-double" class="w-4 h-4 text-brand-gold"></i> 3 Beds</span>
                             <span class="flex items-center gap-1"><i data-lucide="bath" class="w-4 h-4 text-brand-gold"></i> 1 Bath</span>
                             <span class="flex items-center gap-1"><i data-lucide="tree-pine" class="w-4 h-4 text-brand-gold"></i> Pvt Yard</span>
-                            <span class="flex items-center gap-1"><i data-lucide="car" class="w-4 h-4 text-brand-gold"></i> 2 Parking</span>
+                            <span class="flex items-center gap-1 col-span-2"><i data-lucide="car" class="w-4 h-4 text-brand-gold"></i> 2 Parking Spots</span>
                         </div>
                         
-                        <a href="#contact" class="block w-full text-center py-3 border border-brand-900 text-brand-900 font-semibold rounded hover:bg-brand-900 hover:text-white transition-colors">Inquire Availability</a>
+                        <button onclick="openModal('modal-5015-upper')" class="w-full text-center py-3 border border-brand-900 dark:border-brand-gold text-brand-900 dark:text-brand-gold font-semibold rounded hover:bg-brand-900 dark:hover:bg-brand-gold hover:text-white dark:hover:text-white transition-colors">
+                            <span class="lang-en">View Details</span><span class="lang-fr">Voir les détails</span>
+                        </button>
                     </div>
                 </div>
 
                 <!-- Property 2 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 group hover:-translate-y-2 transition-transform duration-300 reveal" style="transition-delay: 150ms;">
+                <div class="bg-white dark:bg-brand-blackCard rounded-xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800 group hover:-translate-y-2 transition-transform duration-300 reveal" style="transition-delay: 150ms;">
                     <div class="relative h-64 overflow-hidden">
-                        <div class="absolute top-4 right-4 bg-brand-900 text-white text-xs font-bold px-3 py-1 rounded shadow z-10">Available Soon</div>
+                        <div class="absolute top-4 right-4 bg-brand-900 dark:bg-brand-gold text-white text-xs font-bold px-3 py-1 rounded shadow z-10 uppercase tracking-wide">
+                            <span class="lang-en">Available Soon</span><span class="lang-fr">Bientôt disponible</span>
+                        </div>
                         <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="5015A Rue Raymond Lower" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-xl font-serif font-bold text-brand-900">5015A Rue Raymond (Lower)</h4>
+                            <h4 class="text-xl font-serif font-bold text-brand-900 dark:text-white">5015A Rue Raymond (Lower)</h4>
                         </div>
-                        <p class="text-sm text-gray-500 mb-4 flex items-center gap-1">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 flex items-center gap-1">
                             <i data-lucide="map-pin" class="w-4 h-4"></i> Pierrefonds, QC H8Z 2X1
                         </p>
-                        <p class="text-gray-600 text-sm mb-6 line-clamp-3">A cozy 4 ½ lower-level suite. Features its own private balcony space and a dedicated, fully fenced backyard area. <br><span class="italic text-xs mt-1 block">*Pets: To be determined.</span></p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-6 line-clamp-2">
+                            <span class="lang-en">A cozy 1,000 sq.ft 4 ½ lower-level suite. Features its own private balcony and fenced backyard.</span>
+                            <span class="lang-fr">Un confortable 4 ½ de 1 000 pi.ca. Comprend son propre balcon privé et une cour clôturée.</span>
+                        </p>
                         
-                        <div class="grid grid-cols-2 gap-3 text-sm text-brand-900 font-medium border-t border-gray-100 pt-4 mb-6">
+                        <div class="grid grid-cols-2 gap-y-3 gap-x-1 text-sm text-brand-900 dark:text-gray-200 font-medium border-t border-gray-100 dark:border-gray-800 pt-4 mb-6">
+                            <span class="flex items-center gap-1"><i data-lucide="maximize" class="w-4 h-4 text-brand-gold"></i> 1000 sq.ft</span>
                             <span class="flex items-center gap-1"><i data-lucide="bed-double" class="w-4 h-4 text-brand-gold"></i> 2 Beds</span>
                             <span class="flex items-center gap-1"><i data-lucide="bath" class="w-4 h-4 text-brand-gold"></i> 1 Bath</span>
                             <span class="flex items-center gap-1"><i data-lucide="sun" class="w-4 h-4 text-brand-gold"></i> Balcony</span>
-                            <span class="flex items-center gap-1"><i data-lucide="car" class="w-4 h-4 text-brand-gold"></i> 2 Parking</span>
+                            <span class="flex items-center gap-1 col-span-2"><i data-lucide="car" class="w-4 h-4 text-brand-gold"></i> 2 Parking Spots</span>
                         </div>
                         
-                        <a href="#contact" class="block w-full text-center py-3 border border-brand-900 text-brand-900 font-semibold rounded hover:bg-brand-900 hover:text-white transition-colors">Inquire Availability</a>
+                        <button onclick="openModal('modal-5015a-lower')" class="w-full text-center py-3 border border-brand-900 dark:border-brand-gold text-brand-900 dark:text-brand-gold font-semibold rounded hover:bg-brand-900 dark:hover:bg-brand-gold hover:text-white dark:hover:text-white transition-colors">
+                            <span class="lang-en">View Details</span><span class="lang-fr">Voir les détails</span>
+                        </button>
                     </div>
                 </div>
 
                 <!-- Property 3 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 group hover:-translate-y-2 transition-transform duration-300 reveal" style="transition-delay: 300ms;">
+                <div class="bg-white dark:bg-brand-blackCard rounded-xl overflow-hidden shadow-lg border border-gray-100 dark:border-gray-800 group hover:-translate-y-2 transition-transform duration-300 reveal" style="transition-delay: 300ms;">
                     <div class="relative h-64 overflow-hidden">
-                        <div class="absolute top-4 right-4 bg-brand-900 text-white text-xs font-bold px-3 py-1 rounded shadow z-10">Available Soon</div>
+                        <div class="absolute top-4 right-4 bg-brand-900 dark:bg-brand-gold text-white text-xs font-bold px-3 py-1 rounded shadow z-10 uppercase tracking-wide">
+                            <span class="lang-en">Available Soon</span><span class="lang-fr">Bientôt disponible</span>
+                        </div>
                         <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="4535 Rue de Namur" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-xl font-serif font-bold text-brand-900">4535 Rue de Namur</h4>
+                            <h4 class="text-xl font-serif font-bold text-brand-900 dark:text-white">4535 Rue de Namur</h4>
                         </div>
-                        <p class="text-sm text-gray-500 mb-4 flex items-center gap-1">
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-4 flex items-center gap-1">
                             <i data-lucide="map-pin" class="w-4 h-4"></i> Pierrefonds, QC
                         </p>
-                        <p class="text-gray-600 text-sm mb-6 line-clamp-3">Expansive home featuring a fully furnished basement and garage. Step outside to a fully fenced backyard with a patio and BBQ. <br><span class="italic text-xs mt-1 block">*Pets: To be determined.</span></p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-6 line-clamp-2">
+                            <span class="lang-en">Expansive home featuring a fully furnished basement, garage, and a fully fenced backyard with BBQ.</span>
+                            <span class="lang-fr">Vaste maison avec sous-sol aménagé, garage et cour arrière entièrement clôturée avec BBQ.</span>
+                        </p>
                         
-                        <div class="grid grid-cols-2 gap-3 text-sm text-brand-900 font-medium border-t border-gray-100 pt-4 mb-6">
+                        <div class="grid grid-cols-2 gap-y-3 gap-x-1 text-sm text-brand-900 dark:text-gray-200 font-medium border-t border-gray-100 dark:border-gray-800 pt-4 mb-6">
                             <span class="flex items-center gap-1"><i data-lucide="bed-double" class="w-4 h-4 text-brand-gold"></i> 3 Beds</span>
                             <span class="flex items-center gap-1"><i data-lucide="bath" class="w-4 h-4 text-brand-gold"></i> 2 Baths</span>
                             <span class="flex items-center gap-1"><i data-lucide="warehouse" class="w-4 h-4 text-brand-gold"></i> Garage</span>
                             <span class="flex items-center gap-1"><i data-lucide="car" class="w-4 h-4 text-brand-gold"></i> 4 Parking</span>
+                            <span class="flex items-center gap-1 col-span-2"><i data-lucide="sofa" class="w-4 h-4 text-brand-gold"></i> Fin. Basement</span>
                         </div>
                         
-                        <a href="#contact" class="block w-full text-center py-3 border border-brand-900 text-brand-900 font-semibold rounded hover:bg-brand-900 hover:text-white transition-colors">Inquire Availability</a>
+                        <button onclick="openModal('modal-4535')" class="w-full text-center py-3 border border-brand-900 dark:border-brand-gold text-brand-900 dark:text-brand-gold font-semibold rounded hover:bg-brand-900 dark:hover:bg-brand-gold hover:text-white dark:hover:text-white transition-colors">
+                            <span class="lang-en">View Details</span><span class="lang-fr">Voir les détails</span>
+                        </button>
                     </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Neighborhood & Requirements Section -->
+    <section class="py-20 bg-white dark:bg-brand-black transition-colors border-y border-gray-100 dark:border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 divide-y md:divide-y-0 md:divide-x divide-gray-200 dark:divide-gray-800">
+                
+                <!-- Neighborhood Amenities -->
+                <div class="reveal md:pr-12">
+                    <h3 class="text-2xl font-serif font-bold text-brand-900 dark:text-white mb-6 flex items-center gap-2">
+                        <i data-lucide="map" class="text-brand-gold"></i>
+                        <span class="lang-en">Location Features</span><span class="lang-fr">Caractéristiques de l'emplacement</span>
+                    </h3>
+                    <ul class="space-y-4 text-gray-600 dark:text-gray-400">
+                        <li class="flex items-center gap-3"><i data-lucide="train" class="w-5 h-5 text-brand-gold shrink-0"></i> <span class="lang-en">Close proximity to the new REM stations</span><span class="lang-fr">À proximité des nouvelles stations du REM</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="bus" class="w-5 h-5 text-brand-gold shrink-0"></i> <span class="lang-en">Easy access to public transit (Buses)</span><span class="lang-fr">Accès facile aux transports en commun (Autobus)</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="shopping-cart" class="w-5 h-5 text-brand-gold shrink-0"></i> <span class="lang-en">Minutes away from major grocery stores</span><span class="lang-fr">À quelques minutes des grandes épiceries</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="trees" class="w-5 h-5 text-brand-gold shrink-0"></i> <span class="lang-en">Situated in quiet, safe, and family-friendly areas</span><span class="lang-fr">Situé dans des quartiers calmes et familiaux</span></li>
+                    </ul>
+                </div>
+
+                <!-- Tenant Requirements -->
+                <div class="reveal md:pl-12 pt-12 md:pt-0">
+                    <h3 class="text-2xl font-serif font-bold text-brand-900 dark:text-white mb-6 flex items-center gap-2">
+                        <i data-lucide="clipboard-check" class="text-brand-gold"></i>
+                        <span class="lang-en">Tenant Requirements</span><span class="lang-fr">Exigences pour les locataires</span>
+                    </h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                        <span class="lang-en">To ensure a safe environment, standard verifications apply:</span>
+                        <span class="lang-fr">Pour assurer un environnement sûr, des vérifications s'appliquent :</span>
+                    </p>
+                    <ul class="space-y-4 text-gray-600 dark:text-gray-400">
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-gold shrink-0"></i> <span class="lang-en">Proof of employment / Income</span><span class="lang-fr">Preuve d'emploi / Revenu</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-gold shrink-0"></i> <span class="lang-en">Recent pay stubs</span><span class="lang-fr">Talons de paie récents</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-gold shrink-0"></i> <span class="lang-en">Background check</span><span class="lang-fr">Vérification des antécédents</span></li>
+                        <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-gold shrink-0"></i> <span class="lang-en">Pets are subject to approval (To Be Determined)</span><span class="lang-fr">Les animaux sont sujets à approbation (À déterminer)</span></li>
+                    </ul>
                 </div>
 
             </div>
@@ -286,226 +446,151 @@
     </section>
 
     <!-- Amenities -->
-    <section id="amenities" class="py-24 bg-brand-900 text-white relative overflow-hidden">
+    <section id="amenities" class="py-24 bg-brand-900 dark:bg-[#080808] text-white relative overflow-hidden transition-colors">
         <!-- Subtle background pattern -->
         <div class="absolute inset-0 opacity-5 pointer-events-none">
              <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/>
-                    </pattern>
-                </defs>
+                <defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/></pattern></defs>
                 <rect width="100%" height="100%" fill="url(#grid)" />
             </svg>
         </div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-                <h2 class="text-brand-gold text-sm font-bold tracking-widest uppercase mb-3">The West Island Standard</h2>
-                <h3 class="text-3xl md:text-4xl font-serif font-bold mb-4">Uncompromising Amenities</h3>
-                <p class="text-gray-300">We don't do "bare minimum". Every home is outfitted to ensure you can resume your normal life the moment you walk through the door.</p>
+                <h2 class="text-brand-gold text-sm font-bold tracking-widest uppercase mb-3">
+                    <span class="lang-en">The West Island Standard</span><span class="lang-fr">Le Standard West Island</span>
+                </h2>
+                <h3 class="text-3xl md:text-4xl font-serif font-bold mb-4">
+                    <span class="lang-en">Uncompromising Amenities</span><span class="lang-fr">Commodités sans compromis</span>
+                </h3>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Amenity Item -->
-                <div class="p-6 border border-brand-800 rounded-xl bg-brand-800/30 backdrop-blur-sm reveal hover:border-brand-gold transition-colors">
-                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4">
-                        <i data-lucide="satellite" class="text-brand-gold w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-xl font-semibold mb-2">High-Speed Starlink</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Enterprise-grade internet in every property. Work from home seamlessly without buffering or dropouts.</p>
+                <div class="p-6 border border-brand-800 dark:border-gray-800 rounded-xl bg-brand-800/30 dark:bg-[#111] backdrop-blur-sm reveal hover:border-brand-gold transition-colors">
+                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4"><i data-lucide="satellite" class="text-brand-gold w-6 h-6"></i></div>
+                    <h4 class="text-xl font-semibold mb-2"><span class="lang-en">High-Speed Starlink</span><span class="lang-fr">Starlink Haute Vitesse</span></h4>
+                    <p class="text-gray-400 text-sm leading-relaxed"><span class="lang-en">Enterprise-grade internet in every property.</span><span class="lang-fr">Internet de niveau entreprise dans chaque propriété.</span></p>
                 </div>
                 
-                <div class="p-6 border border-brand-800 rounded-xl bg-brand-800/30 backdrop-blur-sm reveal hover:border-brand-gold transition-colors" style="transition-delay: 100ms;">
-                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4">
-                        <i data-lucide="utensils" class="text-brand-gold w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-xl font-semibold mb-2">Kitchens & Appliances</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Fully furnished with premium cookware, utensils, coffee machines, and state-of-the-art modern appliances.</p>
+                <div class="p-6 border border-brand-800 dark:border-gray-800 rounded-xl bg-brand-800/30 dark:bg-[#111] backdrop-blur-sm reveal hover:border-brand-gold transition-colors" style="transition-delay: 100ms;">
+                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4"><i data-lucide="utensils" class="text-brand-gold w-6 h-6"></i></div>
+                    <h4 class="text-xl font-semibold mb-2"><span class="lang-en">Kitchens & Appliances</span><span class="lang-fr">Cuisines et Électroménagers</span></h4>
+                    <p class="text-gray-400 text-sm leading-relaxed"><span class="lang-en">Fully furnished with premium cookware and state-of-the-art modern appliances.</span><span class="lang-fr">Entièrement meublé avec des ustensiles haut de gamme et des appareils modernes.</span></p>
                 </div>
 
-                <div class="p-6 border border-brand-800 rounded-xl bg-brand-800/30 backdrop-blur-sm reveal hover:border-brand-gold transition-colors" style="transition-delay: 200ms;">
-                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4">
-                        <i data-lucide="monitor-speaker" class="text-brand-gold w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-xl font-semibold mb-2">Dedicated Workspaces</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Ergonomic desks and chairs provided. We understand that life transitions shouldn't disrupt your career.</p>
+                <div class="p-6 border border-brand-800 dark:border-gray-800 rounded-xl bg-brand-800/30 dark:bg-[#111] backdrop-blur-sm reveal hover:border-brand-gold transition-colors" style="transition-delay: 200ms;">
+                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4"><i data-lucide="monitor-speaker" class="text-brand-gold w-6 h-6"></i></div>
+                    <h4 class="text-xl font-semibold mb-2"><span class="lang-en">Workspace (On Request)</span><span class="lang-fr">Espace de travail (Sur demande)</span></h4>
+                    <p class="text-gray-400 text-sm leading-relaxed"><span class="lang-en">Dedicated ergonomic desks and chairs can be provided upon request for remote work.</span><span class="lang-fr">Des bureaux et chaises ergonomiques peuvent être fournis sur demande pour le télétravail.</span></p>
                 </div>
 
-                <div class="p-6 border border-brand-800 rounded-xl bg-brand-800/30 backdrop-blur-sm reveal hover:border-brand-gold transition-colors" style="transition-delay: 300ms;">
-                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4">
-                        <i data-lucide="sparkles" class="text-brand-gold w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-xl font-semibold mb-2">Hotel-Quality Linens</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Premium bedding, plush towels, and exceptionally comfortable mattresses for the restful sleep you need.</p>
+                <div class="p-6 border border-brand-800 dark:border-gray-800 rounded-xl bg-brand-800/30 dark:bg-[#111] backdrop-blur-sm reveal hover:border-brand-gold transition-colors" style="transition-delay: 300ms;">
+                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4"><i data-lucide="washing-machine" class="text-brand-gold w-6 h-6"></i></div>
+                    <h4 class="text-xl font-semibold mb-2"><span class="lang-en">In-Suite Laundry</span><span class="lang-fr">Buanderie Intégrée</span></h4>
+                    <p class="text-gray-400 text-sm leading-relaxed"><span class="lang-en">Modern washers and dryers in every unit, ensuring total convenience.</span><span class="lang-fr">Laveuses et sécheuses modernes dans chaque unité pour une commodité totale.</span></p>
                 </div>
 
-                <div class="p-6 border border-brand-800 rounded-xl bg-brand-800/30 backdrop-blur-sm reveal hover:border-brand-gold transition-colors" style="transition-delay: 400ms;">
-                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4">
-                        <i data-lucide="washing-machine" class="text-brand-gold w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-xl font-semibold mb-2">In-Suite Laundry</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Modern washers and dryers in every unit, ensuring total convenience during your extended stay.</p>
+                <div class="p-6 border border-brand-800 dark:border-gray-800 rounded-xl bg-brand-800/30 dark:bg-[#111] backdrop-blur-sm reveal hover:border-brand-gold transition-colors" style="transition-delay: 400ms;">
+                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4"><i data-lucide="zap" class="text-brand-gold w-6 h-6"></i></div>
+                    <h4 class="text-xl font-semibold mb-2"><span class="lang-en">Full Backup Generators</span><span class="lang-fr">Génératrices de Secours</span></h4>
+                    <p class="text-gray-400 text-sm leading-relaxed"><span class="lang-en">Our properties feature full-home generators to keep power running during outages.</span><span class="lang-fr">Nos propriétés sont équipées de génératrices pour maintenir l'alimentation lors des pannes.</span></p>
                 </div>
 
-                <div class="p-6 border border-brand-800 rounded-xl bg-brand-800/30 backdrop-blur-sm reveal hover:border-brand-gold transition-colors" style="transition-delay: 500ms;">
-                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4">
-                        <i data-lucide="lock" class="text-brand-gold w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-xl font-semibold mb-2">Smart Keyless Entry</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Secure, personalized code access. No physical keys to lose, making move-in completely frictionless.</p>
+                <div class="p-6 border border-brand-800 dark:border-gray-800 rounded-xl bg-brand-800/30 dark:bg-[#111] backdrop-blur-sm reveal hover:border-brand-gold transition-colors" style="transition-delay: 500ms;">
+                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4"><i data-lucide="thermometer-sun" class="text-brand-gold w-6 h-6"></i></div>
+                    <h4 class="text-xl font-semibold mb-2"><span class="lang-en">Heat Pump Climate Control</span><span class="lang-fr">Climatisation par Thermopompe</span></h4>
+                    <p class="text-gray-400 text-sm leading-relaxed"><span class="lang-en">Advanced systems provide perfectly regulated heating and AC year-round.</span><span class="lang-fr">Des systèmes avancés offrent un chauffage et une climatisation parfaits toute l'année.</span></p>
                 </div>
 
-                <!-- New Amenity: Backup Generator -->
-                <div class="p-6 border border-brand-800 rounded-xl bg-brand-800/30 backdrop-blur-sm reveal hover:border-brand-gold transition-colors" style="transition-delay: 600ms;">
-                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4">
-                        <i data-lucide="zap" class="text-brand-gold w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-xl font-semibold mb-2">Full Backup Generators</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Stay online and comfortable. Our properties feature full-home generators to keep power running seamlessly during outages.</p>
+                <div class="p-6 border border-brand-800 dark:border-gray-800 rounded-xl bg-brand-800/30 dark:bg-[#111] backdrop-blur-sm reveal hover:border-brand-gold transition-colors" style="transition-delay: 600ms;">
+                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4"><i data-lucide="plug-zap" class="text-brand-gold w-6 h-6"></i></div>
+                    <h4 class="text-xl font-semibold mb-2"><span class="lang-en">Universal EV Charging</span><span class="lang-fr">Recharge de VÉ Universelle</span></h4>
+                    <p class="text-gray-400 text-sm leading-relaxed"><span class="lang-en">Every location is equipped with Level 2 car chargers compatible with all EV models.</span><span class="lang-fr">Chaque emplacement est équipé de bornes de niveau 2 compatibles avec tous les VÉ.</span></p>
                 </div>
 
-                <!-- New Amenity: Heat Pump / HVAC -->
-                <div class="p-6 border border-brand-800 rounded-xl bg-brand-800/30 backdrop-blur-sm reveal hover:border-brand-gold transition-colors" style="transition-delay: 700ms;">
-                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4">
-                        <i data-lucide="thermometer-sun" class="text-brand-gold w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-xl font-semibold mb-2">Heat Pump Climate Control</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Advanced heat pump systems provide perfectly regulated, whisper-quiet heating and air conditioning year-round.</p>
+                <div class="p-6 border border-brand-800 dark:border-gray-800 rounded-xl bg-brand-800/30 dark:bg-[#111] backdrop-blur-sm reveal hover:border-brand-gold transition-colors" style="transition-delay: 700ms;">
+                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4"><i data-lucide="lightbulb" class="text-brand-gold w-6 h-6"></i></div>
+                    <h4 class="text-xl font-semibold mb-2"><span class="lang-en">All Utilities Included</span><span class="lang-fr">Tous les Services Inclus</span></h4>
+                    <p class="text-gray-400 text-sm leading-relaxed"><span class="lang-en">Electricity and internet are entirely covered in your rate.</span><span class="lang-fr">L'électricité et l'internet sont entièrement couverts dans votre tarif.</span></p>
                 </div>
 
-                <!-- New Amenity: EV Charger -->
-                <div class="p-6 border border-brand-800 rounded-xl bg-brand-800/30 backdrop-blur-sm reveal hover:border-brand-gold transition-colors" style="transition-delay: 800ms;">
-                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4">
-                        <i data-lucide="plug-zap" class="text-brand-gold w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-xl font-semibold mb-2">Universal EV Charging</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Drive an electric vehicle? Every location is equipped with universal Level 2 car chargers compatible with all EV models.</p>
-                </div>
-
-                <!-- New Amenity: All-Inclusive -->
-                <div class="p-6 border border-brand-800 rounded-xl bg-brand-800/30 backdrop-blur-sm reveal hover:border-brand-gold transition-colors" style="transition-delay: 900ms;">
-                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4">
-                        <i data-lucide="lightbulb" class="text-brand-gold w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-xl font-semibold mb-2">All Utilities Included</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Hydro, electricity, water, and internet are entirely covered in your rate. No hidden fees or utility accounts to manage.</p>
-                </div>
-
-                <!-- New Amenity: Snow Removal (Montreal Bonus) -->
-                <div class="p-6 border border-brand-800 rounded-xl bg-brand-800/30 backdrop-blur-sm reveal hover:border-brand-gold transition-colors" style="transition-delay: 1000ms;">
-                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4">
-                        <i data-lucide="snowflake" class="text-brand-gold w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-xl font-semibold mb-2">Snow & Lawn Care</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">We handle the seasons. Professional snow removal during Montreal winters and complete lawn maintenance in the summer.</p>
-                </div>
-
-                <!-- New Amenity: Support -->
-                <div class="p-6 border border-brand-800 rounded-xl bg-brand-800/30 backdrop-blur-sm reveal hover:border-brand-gold transition-colors" style="transition-delay: 1100ms;">
-                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4">
-                        <i data-lucide="headset" class="text-brand-gold w-6 h-6"></i>
-                    </div>
-                    <h4 class="text-xl font-semibold mb-2">Dedicated Support</h4>
-                    <p class="text-gray-400 text-sm leading-relaxed">Enjoy peace of mind with direct, priority access to our local management team for any property needs during your stay.</p>
+                <div class="p-6 border border-brand-800 dark:border-gray-800 rounded-xl bg-brand-800/30 dark:bg-[#111] backdrop-blur-sm reveal hover:border-brand-gold transition-colors" style="transition-delay: 800ms;">
+                    <div class="w-12 h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-4"><i data-lucide="snowflake" class="text-brand-gold w-6 h-6"></i></div>
+                    <h4 class="text-xl font-semibold mb-2"><span class="lang-en">Snow & Lawn Care</span><span class="lang-fr">Déneigement et Pelouse</span></h4>
+                    <p class="text-gray-400 text-sm leading-relaxed"><span class="lang-en">Professional snow removal in winters and complete lawn maintenance in summer included.</span><span class="lang-fr">Déneigement professionnel en hiver et entretien complet de la pelouse en été inclus.</span></p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section / Netlify Form -->
-    <section id="contact" class="py-24 bg-white">
+    <section id="contact" class="py-24 bg-brand-50 dark:bg-brand-black transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <!-- Contact Info -->
                 <div class="reveal">
-                    <h2 class="text-brand-gold text-sm font-bold tracking-widest uppercase mb-3">Get in Touch</h2>
-                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-brand-900 mb-6">Let us find your temporary home.</h3>
-                    <p class="text-gray-600 mb-8 leading-relaxed">
-                        Currently securing properties across the West Island. Fill out the form with your anticipated dates and needs, and we will contact you directly to discuss availability and find the perfect fit for your situation.
+                    <h2 class="text-brand-gold text-sm font-bold tracking-widest uppercase mb-3">
+                        <span class="lang-en">Get in Touch</span><span class="lang-fr">Contactez-nous</span>
+                    </h2>
+                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-brand-900 dark:text-white mb-6">
+                        <span class="lang-en">Let us find your temporary home.</span><span class="lang-fr">Trouvons votre maison temporaire.</span>
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
+                        <span class="lang-en">Fill out the form with your anticipated dates and needs, and we will contact you directly to discuss availability.</span>
+                        <span class="lang-fr">Remplissez le formulaire avec vos dates prévues et vos besoins, et nous vous contacterons directement pour discuter des disponibilités.</span>
                     </p>
                     
                     <div class="space-y-6">
                         <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded bg-brand-50 flex items-center justify-center text-brand-gold shrink-0">
+                            <div class="w-10 h-10 rounded bg-white dark:bg-[#111] flex items-center justify-center text-brand-gold shrink-0 border border-gray-100 dark:border-gray-800">
                                 <i data-lucide="mail" class="w-5 h-5"></i>
                             </div>
                             <div>
-                                <h5 class="font-semibold text-brand-900">Email Us</h5>
-                                <p class="text-gray-600">hello@westislandrentals.ca</p>
+                                <h5 class="font-semibold text-brand-900 dark:text-white"><span class="lang-en">Email Us</span><span class="lang-fr">Courriel</span></h5>
+                                <a href="mailto:info@westislandrentals.com" class="text-gray-600 dark:text-gray-400 hover:text-brand-gold transition-colors">info@westislandrentals.com</a>
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 rounded bg-brand-50 flex items-center justify-center text-brand-gold shrink-0">
+                            <div class="w-10 h-10 rounded bg-white dark:bg-[#111] flex items-center justify-center text-brand-gold shrink-0 border border-gray-100 dark:border-gray-800">
                                 <i data-lucide="phone" class="w-5 h-5"></i>
                             </div>
                             <div>
-                                <h5 class="font-semibold text-brand-900">Call Us</h5>
-                                <p class="text-gray-600">514-555-0198</p>
+                                <h5 class="font-semibold text-brand-900 dark:text-white"><span class="lang-en">Call Us</span><span class="lang-fr">Téléphone</span></h5>
+                                <a href="tel:5149416061" class="text-gray-600 dark:text-gray-400 hover:text-brand-gold transition-colors">514-941-6061</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Netlify Form -->
-                <div class="bg-brand-50 p-8 rounded-xl shadow-sm border border-brand-100 reveal" style="transition-delay: 200ms;">
-                    <!-- Netlify attributes: data-netlify="true", netlify-honeypot="bot-field" -->
+                <div class="bg-white dark:bg-brand-blackCard p-8 rounded-xl shadow-lg border border-gray-100 dark:border-gray-800 reveal" style="transition-delay: 200ms;">
                     <form name="inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-5">
                         <input type="hidden" name="form-name" value="inquiry" />
-                        <p class="hidden">
-                            <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
-                        </p>
+                        <p class="hidden"><label>Don’t fill this out if you're human: <input name="bot-field" /></label></p>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div>
-                                <label for="name" class="block text-sm font-medium text-brand-900 mb-1">Full Name</label>
-                                <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-brand-gold focus:border-brand-gold outline-none transition-shadow">
+                                <label for="name" class="block text-sm font-medium text-brand-900 dark:text-gray-300 mb-1"><span class="lang-en">Full Name</span><span class="lang-fr">Nom Complet</span></label>
+                                <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#222] text-brand-900 dark:text-white rounded outline-none focus:border-brand-gold transition-colors">
                             </div>
                             <div>
-                                <label for="phone" class="block text-sm font-medium text-brand-900 mb-1">Phone Number</label>
-                                <input type="tel" id="phone" name="phone" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-brand-gold focus:border-brand-gold outline-none transition-shadow">
+                                <label for="phone" class="block text-sm font-medium text-brand-900 dark:text-gray-300 mb-1"><span class="lang-en">Phone Number</span><span class="lang-fr">Téléphone</span></label>
+                                <input type="tel" id="phone" name="phone" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#222] text-brand-900 dark:text-white rounded outline-none focus:border-brand-gold transition-colors">
                             </div>
                         </div>
 
                         <div>
-                            <label for="email" class="block text-sm font-medium text-brand-900 mb-1">Email Address</label>
-                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-brand-gold focus:border-brand-gold outline-none transition-shadow">
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div>
-                                <label for="date" class="block text-sm font-medium text-brand-900 mb-1">Estimated Move-in Date</label>
-                                <input type="date" id="date" name="move-in-date" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-brand-gold focus:border-brand-gold outline-none transition-shadow text-gray-600">
-                            </div>
-                            <div>
-                                <label for="duration" class="block text-sm font-medium text-brand-900 mb-1">Expected Duration</label>
-                                <select id="duration" name="duration" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-brand-gold focus:border-brand-gold outline-none transition-shadow text-gray-600 bg-white">
-                                    <option value="1-2 months">1 - 2 Months</option>
-                                    <option value="3-5 months">3 - 5 Months</option>
-                                    <option value="6+ months">6+ Months</option>
-                                    <option value="unsure">Unsure / Flexible</option>
-                                </select>
-                            </div>
+                            <label for="email" class="block text-sm font-medium text-brand-900 dark:text-gray-300 mb-1"><span class="lang-en">Email Address</span><span class="lang-fr">Courriel</span></label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#222] text-brand-900 dark:text-white rounded outline-none focus:border-brand-gold transition-colors">
                         </div>
 
                         <div>
-                            <label for="reason" class="block text-sm font-medium text-brand-900 mb-1">Reason for Stay</label>
-                            <select id="reason" name="reason" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-brand-gold focus:border-brand-gold outline-none transition-shadow text-gray-600 bg-white">
-                                <option value="renovation">Home Renovation</option>
-                                <option value="insurance">Insurance Claim / Relocation</option>
-                                <option value="transition">Personal Transition / Separation</option>
-                                <option value="work">Corporate / Work Relocation</option>
-                                <option value="other">Other</option>
-                            </select>
+                            <label for="message" class="block text-sm font-medium text-brand-900 dark:text-gray-300 mb-1"><span class="lang-en">Additional Details</span><span class="lang-fr">Détails supplémentaires</span></label>
+                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#222] text-brand-900 dark:text-white rounded outline-none focus:border-brand-gold transition-colors resize-none"></textarea>
                         </div>
 
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-brand-900 mb-1">Additional Details</label>
-                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-brand-gold focus:border-brand-gold outline-none transition-shadow resize-none" placeholder="Tell us a bit about who will be staying and any specific needs (pets, office space, etc.)"></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full py-3 bg-brand-900 text-white font-semibold rounded hover:bg-brand-800 transition-colors shadow-md">
-                            Submit Inquiry
+                        <button type="submit" class="w-full py-3 bg-brand-gold text-white font-semibold rounded hover:bg-brand-goldHover transition-colors shadow-md">
+                            <span class="lang-en">Submit Inquiry</span><span class="lang-fr">Soumettre la demande</span>
                         </button>
                     </form>
                 </div>
@@ -514,33 +599,33 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-brand-900 border-t border-brand-800 pt-16 pb-8">
+    <footer class="bg-brand-900 dark:bg-[#050505] border-t border-brand-800 dark:border-gray-900 pt-16 pb-8 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12 border-b border-brand-800 pb-12">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12 border-b border-brand-800 dark:border-gray-800 pb-12">
                 <!-- Brand -->
                 <div class="text-center md:text-left max-w-sm">
                     <a href="#" class="flex items-center gap-2 justify-center md:justify-start mb-6">
                         <img src="logo.png" alt="West Island Rentals Logo" class="h-14 w-auto object-contain shadow-xl rounded-sm" />
                     </a>
                     <p class="text-gray-400 text-sm leading-relaxed">
-                        Providing premium, fully furnished short-term housing solutions across Montreal's West Island for life's transitions.
+                        <span class="lang-en">Providing premium, fully furnished short-term housing solutions across Montreal's West Island.</span>
+                        <span class="lang-fr">Solutions de logements temporaires haut de gamme dans l'Ouest de l'Île de Montréal.</span>
                     </p>
+                    <!-- Social Links -->
+                    <div class="flex gap-4 mt-6 justify-center md:justify-start text-gray-400">
+                        <a href="#" class="hover:text-brand-gold transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        <a href="#" class="hover:text-brand-gold transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" class="hover:text-brand-gold transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                    </div>
                 </div>
 
                 <!-- Links -->
                 <div class="flex gap-12 text-center md:text-left">
                     <div>
-                        <h4 class="text-white font-semibold mb-4">Navigation</h4>
-                        <ul class="space-y-2 text-sm text-gray-400">
-                            <li><a href="#about" class="hover:text-brand-gold transition-colors">Our Approach</a></li>
-                            <li><a href="#properties" class="hover:text-brand-gold transition-colors">Properties</a></li>
-                            <li><a href="#amenities" class="hover:text-brand-gold transition-colors">Amenities</a></li>
-                        </ul>
-                    </div>
-                    <div>
                         <h4 class="text-white font-semibold mb-4">Contact</h4>
                         <ul class="space-y-2 text-sm text-gray-400">
-                            <li>hello@westislandrentals.ca</li>
+                            <li><a href="mailto:info@westislandrentals.com" class="hover:text-brand-gold transition-colors">info@westislandrentals.com</a></li>
+                            <li><a href="tel:5149416061" class="hover:text-brand-gold transition-colors">514-941-6061</a></li>
                             <li>Montreal, QC</li>
                         </ul>
                     </div>
@@ -548,14 +633,113 @@
             </div>
             
             <div class="text-center text-xs text-gray-500 flex flex-col md:flex-row justify-between items-center">
-                <p>&copy; 2026 West Island Rentals. All rights reserved.</p>
-                <div class="flex gap-4 mt-4 md:mt-0">
-                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-                </div>
+                <p>&copy; 2026 West Island Rentals. <span class="lang-en">All rights reserved.</span><span class="lang-fr">Tous droits réservés.</span></p>
             </div>
         </div>
     </footer>
+
+
+    <!-- ==================== MODALS ==================== -->
+    
+    <!-- Modal: 5015 Upper -->
+    <div id="modal-5015-upper" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm px-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white dark:bg-brand-black border dark:border-brand-gold/30 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative p-6 md:p-8 transform scale-95 transition-transform duration-300 shadow-2xl">
+            <button onclick="closeModal('modal-5015-upper')" class="absolute top-4 right-4 text-gray-400 hover:text-brand-gold dark:text-gray-500 dark:hover:text-brand-gold transition-colors focus:outline-none">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h3 class="text-2xl font-serif font-bold text-brand-900 dark:text-white mb-2">5015 Rue Raymond (Upper)</h3>
+            <p class="text-brand-gold text-sm font-semibold uppercase tracking-wider mb-6">Pierrefonds, QC H8Z 2X1</p>
+            
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Property" class="w-full h-48 object-cover rounded-lg mb-6">
+            
+            <div class="grid grid-cols-2 gap-4 mb-6 p-4 bg-brand-50 dark:bg-[#111] rounded-lg border border-gray-100 dark:border-gray-800">
+                <div class="flex items-center gap-2 text-brand-900 dark:text-gray-200"><i data-lucide="maximize" class="w-4 h-4 text-brand-gold"></i> <span class="font-medium">1,250 sq.ft</span></div>
+                <div class="flex items-center gap-2 text-brand-900 dark:text-gray-200"><i data-lucide="bed-double" class="w-4 h-4 text-brand-gold"></i> <span class="font-medium"><span class="lang-en">3 Bedrooms</span><span class="lang-fr">3 Chambres</span></span></div>
+                <div class="flex items-center gap-2 text-brand-900 dark:text-gray-200"><i data-lucide="bath" class="w-4 h-4 text-brand-gold"></i> <span class="font-medium"><span class="lang-en">1 Bathroom</span><span class="lang-fr">1 Salle de bain</span></span></div>
+                <div class="flex items-center gap-2 text-brand-900 dark:text-gray-200"><i data-lucide="car" class="w-4 h-4 text-brand-gold"></i> <span class="font-medium"><span class="lang-en">2 Parking Spots</span><span class="lang-fr">2 Stationnements</span></span></div>
+            </div>
+
+            <h4 class="font-semibold text-brand-900 dark:text-white mb-3"><span class="lang-en">Property Highlights</span><span class="lang-fr">Points forts</span></h4>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm mb-6 list-disc list-inside">
+                <li><span class="lang-en">Own private, fully fenced backyard</span><span class="lang-fr">Cour arrière privée entièrement clôturée</span></li>
+                <li><span class="lang-en">BBQ & outside patio furniture included</span><span class="lang-fr">BBQ et meubles de patio inclus</span></li>
+                <li><span class="lang-en">Large 5 ½ layout</span><span class="lang-fr">Grand agencement 5 ½</span></li>
+                <li><span class="lang-en">Green Certified, EV Charger, Starlink, Backup Generator</span><span class="lang-fr">Certifié écologique, Borne VÉ, Starlink, Génératrice</span></li>
+                <li class="italic"><span class="lang-en">*Pets are to be determined</span><span class="lang-fr">*Les animaux sont à déterminer</span></li>
+            </ul>
+
+            <button onclick="closeModalAndScroll('modal-5015-upper')" class="w-full py-3 bg-brand-900 dark:bg-brand-gold text-white font-semibold rounded hover:bg-brand-800 dark:hover:bg-brand-goldHover transition-colors">
+                <span class="lang-en">Inquire Now</span><span class="lang-fr">Demande d'info</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal: 5015A Lower -->
+    <div id="modal-5015a-lower" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm px-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white dark:bg-brand-black border dark:border-brand-gold/30 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative p-6 md:p-8 transform scale-95 transition-transform duration-300 shadow-2xl">
+            <button onclick="closeModal('modal-5015a-lower')" class="absolute top-4 right-4 text-gray-400 hover:text-brand-gold dark:text-gray-500 dark:hover:text-brand-gold transition-colors focus:outline-none">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h3 class="text-2xl font-serif font-bold text-brand-900 dark:text-white mb-2">5015A Rue Raymond (Lower)</h3>
+            <p class="text-brand-gold text-sm font-semibold uppercase tracking-wider mb-6">Pierrefonds, QC H8Z 2X1</p>
+            
+            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Property" class="w-full h-48 object-cover rounded-lg mb-6">
+            
+            <div class="grid grid-cols-2 gap-4 mb-6 p-4 bg-brand-50 dark:bg-[#111] rounded-lg border border-gray-100 dark:border-gray-800">
+                <div class="flex items-center gap-2 text-brand-900 dark:text-gray-200"><i data-lucide="maximize" class="w-4 h-4 text-brand-gold"></i> <span class="font-medium">1,000 sq.ft</span></div>
+                <div class="flex items-center gap-2 text-brand-900 dark:text-gray-200"><i data-lucide="bed-double" class="w-4 h-4 text-brand-gold"></i> <span class="font-medium"><span class="lang-en">2 Bedrooms</span><span class="lang-fr">2 Chambres</span></span></div>
+                <div class="flex items-center gap-2 text-brand-900 dark:text-gray-200"><i data-lucide="bath" class="w-4 h-4 text-brand-gold"></i> <span class="font-medium"><span class="lang-en">1 Bathroom</span><span class="lang-fr">1 Salle de bain</span></span></div>
+                <div class="flex items-center gap-2 text-brand-900 dark:text-gray-200"><i data-lucide="car" class="w-4 h-4 text-brand-gold"></i> <span class="font-medium"><span class="lang-en">2 Parking Spots</span><span class="lang-fr">2 Stationnements</span></span></div>
+            </div>
+
+            <h4 class="font-semibold text-brand-900 dark:text-white mb-3"><span class="lang-en">Property Highlights</span><span class="lang-fr">Points forts</span></h4>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm mb-6 list-disc list-inside">
+                <li><span class="lang-en">Dedicated private balcony</span><span class="lang-fr">Balcon privé dédié</span></li>
+                <li><span class="lang-en">Own fully fenced backyard space</span><span class="lang-fr">Espace cour arrière entièrement clôturé</span></li>
+                <li><span class="lang-en">Cozy 4 ½ layout</span><span class="lang-fr">Agencement 4 ½ confortable</span></li>
+                <li><span class="lang-en">Green Certified, EV Charger, Starlink, Backup Generator</span><span class="lang-fr">Certifié écologique, Borne VÉ, Starlink, Génératrice</span></li>
+                <li class="italic"><span class="lang-en">*Pets are to be determined</span><span class="lang-fr">*Les animaux sont à déterminer</span></li>
+            </ul>
+
+            <button onclick="closeModalAndScroll('modal-5015a-lower')" class="w-full py-3 bg-brand-900 dark:bg-brand-gold text-white font-semibold rounded hover:bg-brand-800 dark:hover:bg-brand-goldHover transition-colors">
+                <span class="lang-en">Inquire Now</span><span class="lang-fr">Demande d'info</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal: 4535 Namur -->
+    <div id="modal-4535" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm px-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white dark:bg-brand-black border dark:border-brand-gold/30 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative p-6 md:p-8 transform scale-95 transition-transform duration-300 shadow-2xl">
+            <button onclick="closeModal('modal-4535')" class="absolute top-4 right-4 text-gray-400 hover:text-brand-gold dark:text-gray-500 dark:hover:text-brand-gold transition-colors focus:outline-none">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h3 class="text-2xl font-serif font-bold text-brand-900 dark:text-white mb-2">4535 Rue de Namur</h3>
+            <p class="text-brand-gold text-sm font-semibold uppercase tracking-wider mb-6">Pierrefonds, QC</p>
+            
+            <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Property" class="w-full h-48 object-cover rounded-lg mb-6">
+            
+            <div class="grid grid-cols-2 gap-4 mb-6 p-4 bg-brand-50 dark:bg-[#111] rounded-lg border border-gray-100 dark:border-gray-800">
+                <div class="flex items-center gap-2 text-brand-900 dark:text-gray-200"><i data-lucide="bed-double" class="w-4 h-4 text-brand-gold"></i> <span class="font-medium"><span class="lang-en">3 Bedrooms</span><span class="lang-fr">3 Chambres</span></span></div>
+                <div class="flex items-center gap-2 text-brand-900 dark:text-gray-200"><i data-lucide="bath" class="w-4 h-4 text-brand-gold"></i> <span class="font-medium"><span class="lang-en">2 Bathrooms</span><span class="lang-fr">2 Salles de bain</span></span></div>
+                <div class="flex items-center gap-2 text-brand-900 dark:text-gray-200"><i data-lucide="warehouse" class="w-4 h-4 text-brand-gold"></i> <span class="font-medium">Garage</span></div>
+                <div class="flex items-center gap-2 text-brand-900 dark:text-gray-200"><i data-lucide="car" class="w-4 h-4 text-brand-gold"></i> <span class="font-medium"><span class="lang-en">4 Parking Spots</span><span class="lang-fr">4 Stationnements</span></span></div>
+            </div>
+
+            <h4 class="font-semibold text-brand-900 dark:text-white mb-3"><span class="lang-en">Property Highlights</span><span class="lang-fr">Points forts</span></h4>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm mb-6 list-disc list-inside">
+                <li><span class="lang-en">Fully furnished basement</span><span class="lang-fr">Sous-sol entièrement aménagé</span></li>
+                <li><span class="lang-en">Fully fenced backyard with Patio & BBQ</span><span class="lang-fr">Cour arrière clôturée avec Patio et BBQ</span></li>
+                <li><span class="lang-en">Expansive full-house layout</span><span class="lang-fr">Vaste agencement de maison complète</span></li>
+                <li><span class="lang-en">Green Certified, EV Charger, Starlink, Backup Generator</span><span class="lang-fr">Certifié écologique, Borne VÉ, Starlink, Génératrice</span></li>
+                <li class="italic"><span class="lang-en">*Pets are to be determined</span><span class="lang-fr">*Les animaux sont à déterminer</span></li>
+            </ul>
+
+            <button onclick="closeModalAndScroll('modal-4535')" class="w-full py-3 bg-brand-900 dark:bg-brand-gold text-white font-semibold rounded hover:bg-brand-800 dark:hover:bg-brand-goldHover transition-colors">
+                <span class="lang-en">Inquire Now</span><span class="lang-fr">Demande d'info</span>
+            </button>
+        </div>
+    </div>
+
 
     <!-- Scripts -->
     <script>
@@ -564,27 +748,25 @@
 
         // Navbar Scroll Effect
         const navbar = document.getElementById('navbar');
-        const navLinks = document.querySelectorAll('.nav-link:not(button)');
+        const navLinks = document.querySelectorAll('.nav-link');
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                // Scrolled state
-                navbar.classList.add('bg-white', 'shadow-md', 'py-2');
+                navbar.classList.add('bg-white', 'dark:bg-brand-black', 'shadow-md', 'py-2');
                 navbar.classList.remove('bg-transparent', 'py-4');
-                mobileMenuBtn.classList.replace('text-white', 'text-brand-900');
                 
                 navLinks.forEach(link => {
                     link.classList.replace('text-white', 'text-brand-900');
+                    link.classList.add('dark:text-white');
                 });
             } else {
-                // Top state
-                navbar.classList.remove('bg-white', 'shadow-md', 'py-2');
+                navbar.classList.remove('bg-white', 'dark:bg-brand-black', 'shadow-md', 'py-2');
                 navbar.classList.add('bg-transparent', 'py-4');
-                mobileMenuBtn.classList.replace('text-brand-900', 'text-white');
                 
                 navLinks.forEach(link => {
                     link.classList.replace('text-brand-900', 'text-white');
+                    link.classList.remove('dark:text-white');
                 });
             }
         });
@@ -594,36 +776,124 @@
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-
-        // Close mobile menu on link click
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
         });
 
-        // Scroll Reveal Animation via Intersection Observer
+        // Scroll Reveal Animation
         const revealElements = document.querySelectorAll('.reveal');
-        
-        const revealOptions = {
-            threshold: 0.15,
-            rootMargin: "0px 0px -50px 0px"
-        };
-
-        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+        const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+        const revealOnScroll = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    return;
-                } else {
+                if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                     observer.unobserve(entry.target);
                 }
             });
         }, revealOptions);
+        revealElements.forEach(el => revealOnScroll.observe(el));
 
-        revealElements.forEach(el => {
-            revealOnScroll.observe(el);
-        });
+
+        // ================= LANGUAGE TOGGLE =================
+        const body = document.body;
+        const langToggle = document.getElementById('lang-toggle');
+        const mobileLangToggle = document.getElementById('mobile-lang-toggle');
+        const langText = document.getElementById('lang-text');
+        const mobileLangText = document.getElementById('mobile-lang-text');
+
+        // Check local storage for language preference
+        if(localStorage.getItem('lang') === 'fr') {
+            body.classList.replace('lang-en', 'lang-fr');
+            langText.innerText = 'EN';
+            mobileLangText.innerText = 'EN';
+        }
+
+        const toggleLanguage = () => {
+            if(body.classList.contains('lang-en')) {
+                body.classList.replace('lang-en', 'lang-fr');
+                localStorage.setItem('lang', 'fr');
+                langText.innerText = 'EN';
+                mobileLangText.innerText = 'EN';
+            } else {
+                body.classList.replace('lang-fr', 'lang-en');
+                localStorage.setItem('lang', 'en');
+                langText.innerText = 'FR';
+                mobileLangText.innerText = 'FR';
+            }
+        };
+
+        langToggle.addEventListener('click', toggleLanguage);
+        mobileLangToggle.addEventListener('click', toggleLanguage);
+
+
+        // ================= DARK MODE TOGGLE =================
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const html = document.documentElement;
+
+        // Check local storage or system pref
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+
+        const toggleTheme = () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        };
+
+        themeToggle.addEventListener('click', toggleTheme);
+        mobileThemeToggle.addEventListener('click', toggleTheme);
+
+
+        // ================= MODAL LOGIC =================
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            // Small delay to allow display:flex to apply before animating opacity
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.children[0].classList.remove('scale-95');
+            }, 10);
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.add('opacity-0');
+            modal.children[0].classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }, 300); // Matches transition duration
+        }
+
+        function closeModalAndScroll(id) {
+            closeModal(id);
+            setTimeout(() => {
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('fixed')) {
+                const modals = document.querySelectorAll('.fixed.z-\\[100\\]');
+                modals.forEach(modal => {
+                    if (!modal.classList.contains('hidden')) {
+                        closeModal(modal.id);
+                    }
+                });
+            }
+        }
     </script>
 </body>
 </html>
