@@ -1,14 +1,7 @@
-add in it's green certified and montreal's west island and surrounding area, 
 
 we can put in brackets the if requested option for the dedicated workspace. 
 
-we have to get the dimensions of each room so we can put it in the descriptions
 
-sq footage upstairs raymond is 1250 sq feet
-
-and the downstairs for raymond the a is 1000 sq feet
-
-add in a pop up when you click on each property that gives you more info, like a quick detail thing if that makes sense with an x that can be closed on mobile and desktop. 
 
 same thing for the booking stuff for the google calendar, like chirstine does for her stuff. 
 
