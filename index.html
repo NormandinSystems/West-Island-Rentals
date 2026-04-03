@@ -697,14 +697,12 @@
     
     <!-- Modal: 5015 Upper -->
     <div id="modal-5015-upper" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm px-4 opacity-0 transition-opacity duration-300">
-        <div class="bg-white dark:bg-brand-black border dark:border-brand-gold/30 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative p-6 md:p-8 transform scale-95 transition-transform duration-300 shadow-2xl">
-            <button onclick="closeModal('modal-5015-upper')" class="absolute top-4 right-4 text-gray-400 hover:text-brand-gold dark:text-gray-500 dark:hover:text-brand-gold transition-colors focus:outline-none">
+        <div class="bg-white dark:bg-brand-black border dark:border-brand-gold/30 rounded-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto relative p-6 md:p-8 transform scale-95 transition-transform duration-300 shadow-2xl">
+            <button onclick="closeModal('modal-5015-upper')" class="absolute top-4 right-4 text-gray-400 hover:text-brand-gold dark:text-gray-500 dark:hover:text-brand-gold transition-colors focus:outline-none z-10 bg-white/10 dark:bg-black/50 p-1 rounded-full backdrop-blur-sm">
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
             <h3 class="text-2xl font-serif font-bold text-brand-900 dark:text-white mb-2">5015 Rue Raymond (Upper)</h3>
             <p class="text-brand-gold text-sm font-semibold uppercase tracking-wider mb-6">Pierrefonds, QC H8Z 2X1</p>
-            
-            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Property" class="w-full h-48 object-cover rounded-lg mb-6">
             
             <div class="grid grid-cols-2 gap-4 mb-6 p-4 bg-brand-50 dark:bg-[#111] rounded-lg border border-gray-100 dark:border-gray-800">
                 <div class="flex items-center gap-2 text-brand-900 dark:text-gray-200"><i data-lucide="maximize" class="w-4 h-4 text-brand-gold"></i> <span class="font-medium">1,250 sq.ft</span></div>
@@ -723,6 +721,18 @@
                 <li class="italic"><span class="lang-en">*Pets are to be determined</span><span class="lang-fr">*Les animaux sont à déterminer</span></li>
             </ul>
 
+            <h4 class="font-semibold text-brand-900 dark:text-white mb-3"><span class="lang-en">Photo Gallery</span><span class="lang-fr">Galerie de photos</span></h4>
+            <!-- Dynamic Gallery Container -->
+            <div id="gallery-5015-upper" class="grid grid-cols-2 md:grid-cols-3 gap-2 mb-6" data-prefix="ramonupper" data-count="20">
+                <!-- Javascript will populate images here -->
+            </div>
+
+            <h4 class="font-semibold text-brand-900 dark:text-white mb-3"><span class="lang-en">Video Tours</span><span class="lang-fr">Visites vidéo</span></h4>
+            <!-- Dynamic Video Container -->
+            <div id="videos-5015-upper" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8" data-video-prefix="ramonupper" data-count="3">
+                <!-- Javascript will populate videos here -->
+            </div>
+
             <button onclick="closeModalAndScroll('modal-5015-upper')" class="w-full py-3 bg-brand-900 dark:bg-brand-gold text-white font-semibold rounded hover:bg-brand-800 dark:hover:bg-brand-goldHover transition-colors">
                 <span class="lang-en">Inquire Now</span><span class="lang-fr">Demande d'info</span>
             </button>
@@ -731,14 +741,12 @@
 
     <!-- Modal: 5015A Lower -->
     <div id="modal-5015a-lower" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm px-4 opacity-0 transition-opacity duration-300">
-        <div class="bg-white dark:bg-brand-black border dark:border-brand-gold/30 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative p-6 md:p-8 transform scale-95 transition-transform duration-300 shadow-2xl">
-            <button onclick="closeModal('modal-5015a-lower')" class="absolute top-4 right-4 text-gray-400 hover:text-brand-gold dark:text-gray-500 dark:hover:text-brand-gold transition-colors focus:outline-none">
+        <div class="bg-white dark:bg-brand-black border dark:border-brand-gold/30 rounded-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto relative p-6 md:p-8 transform scale-95 transition-transform duration-300 shadow-2xl">
+            <button onclick="closeModal('modal-5015a-lower')" class="absolute top-4 right-4 text-gray-400 hover:text-brand-gold dark:text-gray-500 dark:hover:text-brand-gold transition-colors focus:outline-none z-10 bg-white/10 dark:bg-black/50 p-1 rounded-full backdrop-blur-sm">
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
             <h3 class="text-2xl font-serif font-bold text-brand-900 dark:text-white mb-2">5015A Rue Raymond (Lower)</h3>
             <p class="text-brand-gold text-sm font-semibold uppercase tracking-wider mb-6">Pierrefonds, QC H8Z 2X1</p>
-            
-            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Property" class="w-full h-48 object-cover rounded-lg mb-6">
             
             <div class="grid grid-cols-2 gap-4 mb-6 p-4 bg-brand-50 dark:bg-[#111] rounded-lg border border-gray-100 dark:border-gray-800">
                 <div class="flex items-center gap-2 text-brand-900 dark:text-gray-200"><i data-lucide="maximize" class="w-4 h-4 text-brand-gold"></i> <span class="font-medium">1,000 sq.ft</span></div>
@@ -756,6 +764,18 @@
                 <li class="italic"><span class="lang-en">*Pets are to be determined</span><span class="lang-fr">*Les animaux sont à déterminer</span></li>
             </ul>
 
+            <h4 class="font-semibold text-brand-900 dark:text-white mb-3"><span class="lang-en">Photo Gallery</span><span class="lang-fr">Galerie de photos</span></h4>
+            <!-- Dynamic Gallery Container -->
+            <div id="gallery-5015a-lower" class="grid grid-cols-2 md:grid-cols-3 gap-2 mb-6" data-prefix="ramonlower" data-count="20">
+                <!-- Javascript will populate images here -->
+            </div>
+
+            <h4 class="font-semibold text-brand-900 dark:text-white mb-3"><span class="lang-en">Video Tours</span><span class="lang-fr">Visites vidéo</span></h4>
+            <!-- Dynamic Video Container -->
+            <div id="videos-5015a-lower" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8" data-video-prefix="ramonlower" data-count="3">
+                <!-- Javascript will populate videos here -->
+            </div>
+
             <button onclick="closeModalAndScroll('modal-5015a-lower')" class="w-full py-3 bg-brand-900 dark:bg-brand-gold text-white font-semibold rounded hover:bg-brand-800 dark:hover:bg-brand-goldHover transition-colors">
                 <span class="lang-en">Inquire Now</span><span class="lang-fr">Demande d'info</span>
             </button>
@@ -764,14 +784,12 @@
 
     <!-- Modal: 4535 Namur -->
     <div id="modal-4535" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm px-4 opacity-0 transition-opacity duration-300">
-        <div class="bg-white dark:bg-brand-black border dark:border-brand-gold/30 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative p-6 md:p-8 transform scale-95 transition-transform duration-300 shadow-2xl">
-            <button onclick="closeModal('modal-4535')" class="absolute top-4 right-4 text-gray-400 hover:text-brand-gold dark:text-gray-500 dark:hover:text-brand-gold transition-colors focus:outline-none">
+        <div class="bg-white dark:bg-brand-black border dark:border-brand-gold/30 rounded-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto relative p-6 md:p-8 transform scale-95 transition-transform duration-300 shadow-2xl">
+            <button onclick="closeModal('modal-4535')" class="absolute top-4 right-4 text-gray-400 hover:text-brand-gold dark:text-gray-500 dark:hover:text-brand-gold transition-colors focus:outline-none z-10 bg-white/10 dark:bg-black/50 p-1 rounded-full backdrop-blur-sm">
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
             <h3 class="text-2xl font-serif font-bold text-brand-900 dark:text-white mb-2">4535 Rue de Namur</h3>
             <p class="text-brand-gold text-sm font-semibold uppercase tracking-wider mb-6">Pierrefonds, QC</p>
-            
-            <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Property" class="w-full h-48 object-cover rounded-lg mb-6">
             
             <div class="grid grid-cols-2 gap-4 mb-6 p-4 bg-brand-50 dark:bg-[#111] rounded-lg border border-gray-100 dark:border-gray-800">
                 <div class="flex items-center gap-2 text-brand-900 dark:text-gray-200"><i data-lucide="bed-double" class="w-4 h-4 text-brand-gold"></i> <span class="font-medium"><span class="lang-en">3 Bedrooms</span><span class="lang-fr">3 Chambres</span></span></div>
@@ -789,9 +807,46 @@
                 <li class="italic"><span class="lang-en">*Pets are to be determined</span><span class="lang-fr">*Les animaux sont à déterminer</span></li>
             </ul>
 
+            <h4 class="font-semibold text-brand-900 dark:text-white mb-3"><span class="lang-en">Photo Gallery</span><span class="lang-fr">Galerie de photos</span></h4>
+            <!-- Dynamic Gallery Container -->
+            <div id="gallery-4535" class="grid grid-cols-2 md:grid-cols-3 gap-2 mb-6" data-prefix="namur" data-count="20">
+                <!-- Javascript will populate images here -->
+            </div>
+
+            <h4 class="font-semibold text-brand-900 dark:text-white mb-3"><span class="lang-en">Video Tours</span><span class="lang-fr">Visites vidéo</span></h4>
+            <!-- Dynamic Video Container -->
+            <div id="videos-4535" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8" data-video-prefix="namur" data-count="3">
+                <!-- Javascript will populate videos here -->
+            </div>
+
             <button onclick="closeModalAndScroll('modal-4535')" class="w-full py-3 bg-brand-900 dark:bg-brand-gold text-white font-semibold rounded hover:bg-brand-800 dark:hover:bg-brand-goldHover transition-colors">
                 <span class="lang-en">Inquire Now</span><span class="lang-fr">Demande d'info</span>
             </button>
+        </div>
+    </div>
+
+
+    <!-- ==================== FULLSCREEN LIGHTBOX ==================== -->
+    <div id="lightbox" class="fixed inset-0 z-[200] hidden items-center justify-center bg-black/95 backdrop-blur-lg opacity-0 transition-opacity duration-300">
+        <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white/70 hover:text-white transition-colors z-50 p-2 focus:outline-none">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        
+        <!-- Navigation Buttons -->
+        <button onclick="prevImage(event)" class="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors z-50 p-2 focus:outline-none group">
+            <div class="bg-black/50 group-hover:bg-brand-gold p-2 rounded-full backdrop-blur transition-colors">
+                <i data-lucide="chevron-left" class="w-8 h-8 md:w-10 md:h-10"></i>
+            </div>
+        </button>
+        <button onclick="nextImage(event)" class="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors z-50 p-2 focus:outline-none group">
+            <div class="bg-black/50 group-hover:bg-brand-gold p-2 rounded-full backdrop-blur transition-colors">
+                <i data-lucide="chevron-right" class="w-8 h-8 md:w-10 md:h-10"></i>
+            </div>
+        </button>
+        
+        <div class="relative w-full max-w-6xl max-h-[90vh] px-4 md:px-24 flex flex-col items-center justify-center">
+            <img id="lightbox-img" src="" alt="Expanded Property Image" class="max-w-full max-h-[85vh] object-contain rounded shadow-2xl transition-transform duration-300">
+            <div id="lightbox-counter" class="absolute bottom-[-30px] text-white/70 text-sm tracking-widest font-medium"></div>
         </div>
     </div>
 
@@ -886,7 +941,6 @@
         const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
         const html = document.documentElement;
 
-        // Check local storage or system pref
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             html.classList.add('dark');
         } else {
@@ -907,17 +961,166 @@
         mobileThemeToggle.addEventListener('click', toggleTheme);
 
 
+        // ================= DYNAMIC GALLERY GENERATION =================
+        const galleriesData = {};
+        
+        // Beautiful architectural fallback images just in case a local image hasn't been uploaded yet.
+        const fallbacks = [
+            "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1510798831971-661eb04b3739?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+        ];
+
+        // The simple zoom icon used in the image overlays
+        const zoomIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 w-8 h-8 transform scale-75 group-hover:scale-100"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>`;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const galleryContainers = document.querySelectorAll('[id^="gallery-"]');
+            
+            galleryContainers.forEach(container => {
+                const prefix = container.getAttribute('data-prefix');
+                const count = parseInt(container.getAttribute('data-count')) || 20;
+                const galleryId = container.id;
+                
+                galleriesData[galleryId] = []; // Initialize array for lightbox
+                
+                for (let i = 1; i <= count; i++) {
+                    const imgSrc = `${prefix}${i}.jpg`;
+                    galleriesData[galleryId].push(imgSrc);
+                    
+                    const imgWrap = document.createElement('div');
+                    // Make the first image a large hero feature spanning the full width
+                    if (i === 1) {
+                        imgWrap.className = "relative overflow-hidden rounded-lg aspect-video cursor-pointer group col-span-full shadow-md";
+                    } else {
+                        imgWrap.className = "relative overflow-hidden rounded-lg aspect-[4/3] cursor-pointer group shadow-sm";
+                    }
+
+                    const img = document.createElement('img');
+                    img.src = imgSrc;
+                    img.alt = `Property Photo ${i}`;
+                    img.className = "w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 bg-gray-200 dark:bg-gray-800";
+                    
+                    // Smart Fallback: If local photo doesn't exist yet, inject a beautiful placeholder
+                    img.onerror = function() {
+                        const fallbackSrc = fallbacks[(i - 1) % fallbacks.length];
+                        this.src = fallbackSrc;
+                        galleriesData[galleryId][i - 1] = fallbackSrc; // Update the array so the lightbox knows too
+                        this.onerror = null; // Prevent infinite loops
+                    };
+
+                    const overlay = document.createElement('div');
+                    overlay.className = "absolute inset-0 bg-brand-900/0 group-hover:bg-brand-900/40 transition-colors duration-300 flex items-center justify-center";
+                    overlay.innerHTML = zoomIconSVG;
+
+                    // Click event to open lightbox
+                    imgWrap.onclick = () => openLightbox(galleryId, i - 1);
+
+                    imgWrap.appendChild(img);
+                    imgWrap.appendChild(overlay);
+                    container.appendChild(imgWrap);
+                }
+            });
+
+            // ================= DYNAMIC VIDEO GENERATION =================
+            const videoContainers = document.querySelectorAll('[id^="videos-"]');
+            
+            videoContainers.forEach(container => {
+                const prefix = container.getAttribute('data-video-prefix') || container.getAttribute('data-prefix');
+                const count = parseInt(container.getAttribute('data-count')) || 3;
+                
+                for (let i = 1; i <= count; i++) {
+                    const vidSrc = `${prefix}video${i}.mov`;
+                    
+                    const vidWrap = document.createElement('div');
+                    vidWrap.className = "relative overflow-hidden rounded-lg aspect-video shadow-sm bg-gray-200 dark:bg-gray-800 flex items-center justify-center";
+                    
+                    const video = document.createElement('video');
+                    video.controls = true;
+                    video.className = "w-full h-full object-cover z-10 relative";
+                    video.src = vidSrc;
+                    
+                    // Smart Fallback: If local video doesn't exist yet, show a clean "Coming Soon" placeholder
+                    video.onerror = function() {
+                        this.style.display = 'none'; // Hide the broken video player
+                        const fallbackMsg = document.createElement('div');
+                        fallbackMsg.className = "absolute inset-0 flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 p-4 text-center";
+                        fallbackMsg.innerHTML = `<i data-lucide="video-off" class="w-8 h-8 mb-2 opacity-50"></i><span class="text-xs uppercase tracking-widest font-semibold">Video ${i} Coming Soon</span>`;
+                        vidWrap.appendChild(fallbackMsg);
+                        lucide.createIcons(); // Re-initialize the icon we just injected
+                    };
+
+                    vidWrap.appendChild(video);
+                    container.appendChild(vidWrap);
+                }
+            });
+        });
+
+        // ================= LIGHTBOX LOGIC =================
+        let currentGallery = [];
+        let currentImageIndex = 0;
+
+        function openLightbox(galleryId, index) {
+            currentGallery = galleriesData[galleryId];
+            currentImageIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            
+            updateLightboxView();
+            
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+            setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.add('opacity-0');
+            setTimeout(() => {
+                lightbox.classList.remove('flex');
+                lightbox.classList.add('hidden');
+                document.getElementById('lightbox-img').src = ''; // Clear image
+            }, 300);
+        }
+
+        function updateLightboxView() {
+            const imgEl = document.getElementById('lightbox-img');
+            const counterEl = document.getElementById('lightbox-counter');
+            
+            // Add a quick fade out/in effect
+            imgEl.style.opacity = '0.5';
+            setTimeout(() => {
+                imgEl.src = currentGallery[currentImageIndex];
+                imgEl.style.opacity = '1';
+            }, 150);
+
+            counterEl.innerText = `${currentImageIndex + 1} / ${currentGallery.length}`;
+        }
+
+        function nextImage(e) {
+            if (e) e.stopPropagation();
+            currentImageIndex = (currentImageIndex + 1) % currentGallery.length;
+            updateLightboxView();
+        }
+
+        function prevImage(e) {
+            if (e) e.stopPropagation();
+            currentImageIndex = (currentImageIndex - 1 + currentGallery.length) % currentGallery.length;
+            updateLightboxView();
+        }
+
         // ================= MODAL LOGIC =================
         function openModal(id) {
             const modal = document.getElementById(id);
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            // Small delay to allow display:flex to apply before animating opacity
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 modal.children[0].classList.remove('scale-95');
             }, 10);
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden'; 
         }
 
         function closeModal(id) {
@@ -928,7 +1131,7 @@
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
                 document.body.style.overflow = 'auto';
-            }, 300); // Matches transition duration
+            }, 300); 
         }
 
         function closeModalAndScroll(id) {
@@ -938,9 +1141,16 @@
             }, 300);
         }
 
-        // Close modal when clicking outside
+        // Close logic for modals and lightboxes
         window.onclick = function(event) {
-            if (event.target.classList.contains('fixed')) {
+            // Close Lightbox if background is clicked
+            if (event.target.id === 'lightbox') {
+                closeLightbox();
+                return;
+            }
+            
+            // Close Property Modal if background is clicked
+            if (event.target.classList.contains('fixed') && event.target.id !== 'lightbox') {
                 const modals = document.querySelectorAll('.fixed.z-\\[100\\]');
                 modals.forEach(modal => {
                     if (!modal.classList.contains('hidden')) {
@@ -949,6 +1159,22 @@
                 });
             }
         }
+
+        // Keyboard Navigation Support
+        document.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('lightbox');
+            if (!lightbox.classList.contains('hidden')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'ArrowLeft') prevImage();
+            } else {
+                // If lightbox is closed, check if a modal is open and user pressed Escape
+                if (e.key === 'Escape') {
+                    const openModalId = Array.from(document.querySelectorAll('.fixed.z-\\[100\\]')).find(m => !m.classList.contains('hidden'))?.id;
+                    if(openModalId) closeModal(openModalId);
+                }
+            }
+        });
     </script>
 </body>
 </html>
